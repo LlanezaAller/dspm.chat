@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">dsdm.chatt</string>
+    <string name="userName">User name</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
 </resources>
