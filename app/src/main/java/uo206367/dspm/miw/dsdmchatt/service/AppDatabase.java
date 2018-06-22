@@ -37,6 +37,6 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     private static User assertUser(final AppDatabase db, User user){
-        db.userDao().findByName(user.getUserName());
+        return db.userDao().findByName(user.getUserName());
     }
 }

@@ -4,4 +4,7 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="login_error_information">Login error (user name, password...)</string>
+    <string name="login_error_db">Error recovering user from DB</string>
+    <string name="login_connected">Connection acomplished</string>
 </resources>

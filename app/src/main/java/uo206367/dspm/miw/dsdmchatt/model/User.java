@@ -15,9 +15,20 @@ public class User {
 
     }
 
+    /**
     public User(String userName, String password){
         this.userName = userName;
         this.password = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
+    }
+**/
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUserName() {
