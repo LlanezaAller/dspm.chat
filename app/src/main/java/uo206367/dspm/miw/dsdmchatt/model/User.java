@@ -10,6 +10,7 @@ public class User {
 
     private String userName;
     private String password;
+    private String data;
 
     public User(){
 
@@ -21,7 +22,6 @@ public class User {
         this.password = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password);
     }
 **/
-
 
     public int getId() {
         return id;
@@ -46,4 +46,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getData(){ return data; }
+
+    public void setData(String data) { this.data = data; }
 }
