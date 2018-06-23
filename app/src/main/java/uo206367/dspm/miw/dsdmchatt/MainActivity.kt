@@ -2,7 +2,6 @@ package uo206367.dspm.miw.dsdmchatt
 
 import android.app.Activity
 import android.app.Fragment
-import android.app.FragmentTransaction
 import android.graphics.Color
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
@@ -36,9 +35,9 @@ class MainActivity : Activity() {
     private val URL_WS = "ws://156.35.98.50:3000"
 
     //components
-    var output: TextView? = null
-    var errOutput: TextView? = null
-    var input: EditText? = null
+    private var output: TextView? = null
+    private var errOutput: TextView? = null
+    private var input: EditText? = null
     private var client: OkHttpClient? = null
     private var gson: Gson? = null
 
@@ -49,6 +48,7 @@ class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         gson = Gson()
 
         val ft = fragmentManager.beginTransaction()
@@ -78,7 +78,7 @@ class MainActivity : Activity() {
     fun onLogin(view: View) {
         val userNameET = findViewById<EditText>(R.id.login_inputUserName)
         val userPasswordET = findViewById<EditText>(R.id.login_inputPassword)
-        if (userNameET.text.toString().length > 0 && userPasswordET.text.toString().length > 0) {
+        if (userNameET.text.toString().isNotEmpty() && userPasswordET.text.toString().isNotEmpty()) {
             val user = User()
             user.userName = userNameET.text.toString()
             user.password = userPasswordET.text.toString()

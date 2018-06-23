@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt'
+
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -35,7 +37,7 @@ dependencies {
 
     implementation "android.arch.persistence.room:runtime:$room_version"
     implementation 'com.android.support:support-v4:27.1.1'
-    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
+    kapt  "android.arch.persistence.room:compiler:$room_version"
 
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.7'
 
