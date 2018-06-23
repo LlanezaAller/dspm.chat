@@ -6,11 +6,10 @@
     <string name="register">Register</string>
     <string name="login_error_information">Login error (user name, password...)</string>
     <string name="login_error_db">Error recovering user from DB</string>
+    <string name="login_error_ws">Error connecting to server, please reconnect</string>
     <string name="login_connected">Connection acomplished</string>
+    <string name="login_disconnected">Connection close</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="action_settings">Settings</string>
-    <string name="single_view">Single</string>
-    <string name="chat_Send" >Send</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="chat_connectDisconnect">Connect / Disconnect</string>
 </resources>

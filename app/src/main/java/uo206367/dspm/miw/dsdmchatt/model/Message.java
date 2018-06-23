@@ -30,4 +30,13 @@ public class Message {
     public void setData(Data data) {
         this.data = data;
     }
+
+    public String printMessage(){
+        switch (getSection()){
+            case "messages":
+                return getData().getUserName() + ":\n\t\t" + getData().getText();
+            default:
+                return "";
+        }
+    }
 }

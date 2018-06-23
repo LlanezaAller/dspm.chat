@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">dsdm.chatt</string>
+    <string name="userName">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="login">Acceder</string>
+    <string name="register">Registrarse</string>
+    <string name="login_error_information">Error en el login (Alguno de los campos es erróneo)</string>
+    <string name="login_error_db">Error recuperando el usuario de la base de datos</string>
+    <string name="login_error_ws">Error conectando con el servidor, por favor vuelva a intentarlo</string>
+    <string name="login_connected">Conexión completada</string>
+    <string name="chat_connectDisconnect">Conectar / Desconectar</string>
+    <string name="login_disconnected">Desconectado</string>
+</resources>

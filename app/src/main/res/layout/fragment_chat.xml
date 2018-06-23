@@ -15,42 +15,42 @@
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:layout_width="152dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="156dp"
-            android:layout_marginStart="140dp"
-            android:text="Test !"
+            android:layout_marginEnd="16dp"
             android:onClick="start"
+            android:text="@string/chat_connectDisconnect"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.095" />
+            app:layout_constraintVertical_bias="0.034" />
 
         <TextView
             android:id="@+id/output"
             android:layout_width="match_parent"
-            android:layout_height="296dp"
+            android:layout_height="330dp"
             android:layout_marginBottom="108dp"
             android:layout_marginTop="8dp"
-            android:text="@string/hello_blank_fragment"
+            android:gravity="bottom"
+            android:text=""
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:layout_width="324dp"
-            android:layout_height="16dp"
+            android:id="@+id/status"
+            android:layout_width="123dp"
+            android:layout_height="53dp"
             android:layout_marginBottom="476dp"
-            android:layout_marginEnd="28dp"
+            android:layout_marginEnd="260dp"
             android:layout_marginTop="19dp"
-            android:text="@string/hello_blank_fragment"
+            android:maxLines="25"
+            android:scrollbars="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.088" />
 
         <EditText
             android:id="@+id/input"

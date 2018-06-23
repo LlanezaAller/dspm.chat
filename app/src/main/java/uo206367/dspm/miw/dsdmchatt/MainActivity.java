@@ -2,18 +2,17 @@ package uo206367.dspm.miw.dsdmchatt;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -21,7 +20,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
-import okhttp3.internal.Util;
 import okio.ByteString;
 import uo206367.dspm.miw.dsdmchatt.model.Data;
 import uo206367.dspm.miw.dsdmchatt.model.Message;
@@ -42,9 +40,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         gson = new Gson();
 
-        // Begin the transaction
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        // Replace the contents of the container with the new fragment
         loginFragment = new LoginFragment();
         chatFragment = new ChatFragment();
 
@@ -56,19 +52,15 @@ public class MainActivity extends Activity {
         builder.connectTimeout(0, TimeUnit.SECONDS);
 
         client = new OkHttpClient.Builder()
-                //.connectTimeout(0, TimeUnit.SECONDS)
-                //.writeTimeout(0, TimeUnit.SECONDS)
-                //.readTimeout(0, TimeUnit.SECONDS)
                 .pingInterval(5000, TimeUnit.MILLISECONDS)
                 .build();
 
-        // or ft.add(R.id.your_placeholder, new FooFragment());
-        // Complete the changes added above
         ft.commit();
     }
 
     @Override
     public void onDestroy() {
+        closeConnection();
         ws.close(NORMAL_CLOSURE_STATUS, "Bye");
         super.onDestroy();
     }
@@ -115,14 +107,11 @@ public class MainActivity extends Activity {
 
     }
 
-
-
-
     private final String URL_WS = "ws://156.35.98.50:3000";
-    //private final String URL_WS = "ws://127.0.0.1:3000";
+
     //components
-    private Button start;
     public TextView output;
+    public TextView errOutput;
     public EditText input;
     private OkHttpClient client;
     private Gson gson;
@@ -133,20 +122,19 @@ public class MainActivity extends Activity {
 
         @Override
         public void onOpen(WebSocket webSocket, Response response) {
-            //super.onOpen(webSocket, response);
             Message msg = new Message("people", new Data("connected", userLogged.getUserName(), userLogged.getUserName(), ""));
             String message = gson.toJson(msg);
             webSocket.send(message);
-
+            errOutput(getResources().getString(R.string.login_connected), true);
 
             if(ws == null)
                 ws = webSocket;
-            //webSocket.close(NORMAL_CLOSURE_STATUS, "Bye");
         }
 
         @Override
         public void onMessage(WebSocket webSocket, String text) {
-            output("Receiving : " + text);
+            Message msg = gson.fromJson(text, Message.class);
+            output(msg.printMessage());
         }
 
         @Override
@@ -156,14 +144,13 @@ public class MainActivity extends Activity {
 
         @Override
         public void onClosing(WebSocket webSocket, int code, String reason) {
-            //super.onClosing(webSocket, code, reason);
             closeConnection();
         }
 
         @Override
         public void onFailure(WebSocket webSocket, Throwable t, Response response) {
-            //super.onFailure(webSocket, t, response);
-            output("Error : " + t.getMessage());
+            errOutput(getResources().getString(R.string.login_error_ws), false);
+            Log.e("connection", t.getMessage());
         }
     }
 
@@ -195,8 +182,10 @@ public class MainActivity extends Activity {
     }
 
     private void output(final String txt) {
-        if (output == null)
+        if (output == null) {
             output = findViewById(R.id.output);
+            output.setMovementMethod(new ScrollingMovementMethod());
+        }
 
         runOnUiThread(new Runnable() {
             @Override
@@ -206,10 +195,29 @@ public class MainActivity extends Activity {
         });
     }
 
+    private void errOutput(final String txt, boolean ok){
+        if (errOutput == null) {
+            errOutput = findViewById(R.id.status);
+            errOutput.setMovementMethod(new ScrollingMovementMethod());
+            if(ok)
+                errOutput.setTextColor(Color.GREEN);
+            else
+                errOutput.setTextColor(Color.RED);
+        }
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                errOutput.setText(txt);
+            }
+        });
+    }
+
     private void closeConnection(){
         Message msg = new Message("people", new Data("disconnected", userLogged.getUserName(), userLogged.getUserName(), ""));
         String message = gson.toJson(msg);
         ws.send(message);
         ws.close(NORMAL_CLOSURE_STATUS, "Bye");
+        errOutput(getResources().getString(R.string.login_connected), false);
     }
 }
