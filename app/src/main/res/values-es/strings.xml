@@ -11,4 +11,5 @@
     <string name="login_connected">Conexión completada</string>
     <string name="chat_connectDisconnect">Conectar / Desconectar</string>
     <string name="login_disconnected">Desconectado</string>
+    <string name="chat_Send">Enviar</string>
 </resources>
