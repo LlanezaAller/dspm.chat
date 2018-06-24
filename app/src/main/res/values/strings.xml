@@ -11,7 +11,9 @@
     <string name="login_disconnected">Connection close</string>
 
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="chat_connectDisconnect">Connect / Disconnect</string>
+    <string name="chat_connectDisconnect">Connect</string>
     <string name="chat_Send">Send</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="chat_write">Write your message...</string>
+    <string name="userConnected">User %s connected to the chat</string>
+    <string name="userDisconnected">User %s disconnected to the chat</string>
 </resources>

@@ -9,7 +9,10 @@
     <string name="login_error_db">Error recuperando el usuario de la base de datos</string>
     <string name="login_error_ws">Error conectando con el servidor, por favor vuelva a intentarlo</string>
     <string name="login_connected">Conexión completada</string>
-    <string name="chat_connectDisconnect">Conectar / Desconectar</string>
+    <string name="chat_connectDisconnect">Conectar</string>
     <string name="login_disconnected">Desconectado</string>
     <string name="chat_Send">Enviar</string>
+    <string name="chat_write">Escriba su mensaje...</string>
+    <string name="userConnected">El usuario %s se ha conectado</string>
+    <string name="userDisconnected">El usuario %s se ha desconectado</string>
 </resources>

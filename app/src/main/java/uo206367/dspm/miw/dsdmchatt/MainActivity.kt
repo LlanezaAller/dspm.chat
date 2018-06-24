@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 
 import com.google.gson.Gson
 
@@ -86,7 +87,6 @@ class MainActivity : Activity() {
                 val userFromDatabase = AppDatabase.getAppDatabase(view.context).userDao().findByName(user.userName)
 
                 if (userFromDatabase != null) {
-                    //User userFromRest = doLogin(userFromDatabase, view);
                     MessageService.createToast(view, R.string.login_connected)
                     userLogged = userFromDatabase
                     val ft = fragmentManager.beginTransaction()
@@ -133,7 +133,10 @@ class MainActivity : Activity() {
 
         override fun onMessage(webSocket: WebSocket?, text: String?) {
             val msg = gson!!.fromJson(text, Message::class.java)
-            output(msg.printMessage())
+            var connect = false
+            if (msg.data?.operation == "connected")
+                connect = true
+            output(msg.printMessage(if (connect) resources.getString(R.string.userConnected) else resources.getString(R.string.userDisconnected)))
         }
 
         override fun onMessage(webSocket: WebSocket?, bytes: ByteString) {
