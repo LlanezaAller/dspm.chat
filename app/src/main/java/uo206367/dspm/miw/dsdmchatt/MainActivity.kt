@@ -33,7 +33,7 @@ class MainActivity : Activity() {
     private var loginFragment: Fragment? = null
     private var chatFragment: Fragment? = null
 
-    private val URL_WS = "ws://156.35.98.50:3000"
+    private val URL_WS = "ws://localhost:3000"
 
     //components
     private var output: TextView? = null
